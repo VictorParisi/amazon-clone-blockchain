@@ -6,6 +6,8 @@ import logoFull from "../assets/amazon_logo_full.png"
 import { FaBox } from "react-icons/fa"
 import { BsFillBookmarkFill, BsFillPersonFill } from "react-icons/bs"
 import { AiOutlineHistory } from 'react-icons/ai'
+import { useContext } from "react"
+import { AmazonContext } from "../context/AmazonContext"
 
 
 export default function Sidebar() {
@@ -13,8 +15,14 @@ export default function Sidebar() {
         menuItem: `flex items-center text-lg font-bold cursor-pointer gap-2`,
     }
 
-    const isAuthenticated = true
-    const username = "Victor"
+    const {
+        isAuthenticated,
+        nickname,
+        setNickname,
+        username,
+        setUsername,
+        handleSetUsername
+    } = useContext(AmazonContext)
 
     return (
         <div className="h-full w-[300px] flex flex-col bg-[#fff] static">
@@ -41,14 +49,14 @@ export default function Sidebar() {
                                         type="text"
                                         placeholder="Username..."
                                         className="bg-transparent border-white border-2 rounded-lg w-[80%] py-2 px-4 text-lg mt-[20px] 
-                                            placeholder:text-white focus:outline-none flex justify-center items-center text-white"
-                                        // value={nickname}
+                                        placeholder:text-white focus:outline-none flex justify-center items-center text-white"
+                                        value={nickname}
                                         onChange={(e) => setNickname(e.target.value)}
                                     />
                                 </div>
                                 <button
                                     className="text-lg font-bold flex flex-1 items-center mt-[20px] mb-[20px] text-white"
-                                // onClick={handleSetUsername}
+                                    onClick={handleSetUsername}
                                 >Set Nickname
                                 </button>
                             </>
